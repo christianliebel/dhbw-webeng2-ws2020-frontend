@@ -7,9 +7,9 @@ import { YellPipe } from './yell.pipe';
 import { TodoComponent } from './todo/todo.component';
 import { TestDirective } from './test.directive';
 import { Test2Directive } from './test2.directive';
-import { AuthModule } from '@auth0/auth0-angular/lib/auth.module';
+import { AuthModule } from '@auth0/auth0-angular';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthHttpInterceptor } from '@auth0/auth0-angular/lib/auth.interceptor';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [

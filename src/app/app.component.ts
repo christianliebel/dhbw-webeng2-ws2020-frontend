@@ -1,6 +1,7 @@
 import { TodoService } from './todo.service';
 import { Component } from '@angular/core';
 import { Todo } from './todo';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Component({
   selector: 'app-root',
@@ -14,8 +15,18 @@ export class AppComponent {
   public myTodo = { name: 'Review durchführen', done: false, id: 3 };
   public todos: Todo[];
 
-  constructor(todoService: TodoService) {
-    todoService.getAll().subscribe(todos => this.todos = todos);
+  constructor(
+    public authService: AuthService,
+    public todoService: TodoService
+  ) {
+  }
+
+  login() {
+    this.authService.loginWithRedirect();
+  }
+
+  getTodos() {
+    this.todoService.getAll().subscribe(todos => this.todos = todos);
   }
 
   public onClick(event: MouseEvent): void {
