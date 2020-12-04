@@ -1,2 +1,4 @@
-{{ todo | json }}
-<button (click)="done.emit(todo)">Done!</button>
+<label>
+  <input type="checkbox" [checked]="todo.done">
+  {{ todo.name }}
+</label>

@@ -19,7 +19,7 @@ export class TodoService {
   getAll(): Todo[] {
     return [
       { id: 1, name: 'Wäsche waschen', done: true },
-      { id: 2, name: 'Straße kehren', done: true },
+      { id: 2, name: 'Straße kehren', done: false },
       { id: 3, name: 'Aufräumen', done: true }
     ];
   }
