@@ -15,7 +15,7 @@ export class AppComponent {
   public todos: Todo[];
 
   constructor(todoService: TodoService) {
-    this.todos = todoService.getAll();
+    todoService.getAll().subscribe(todos => this.todos = todos);
   }
 
   public onClick(event: MouseEvent): void {
