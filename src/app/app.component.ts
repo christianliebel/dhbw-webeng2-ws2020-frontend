@@ -1,5 +1,6 @@
 import { TodoService } from './todo.service';
 import { Component } from '@angular/core';
+import { Todo } from './todo';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,10 @@ export class AppComponent {
   public color = 'cornflowerblue';
   public numericValue = 3.14159265;
   public myTodo = { name: 'Review durchführen', done: false, id: 3 };
+  public todos: Todo[];
 
   constructor(todoService: TodoService) {
-    console.log(todoService.getAll());
+    this.todos = todoService.getAll();
   }
 
   public onClick(event: MouseEvent): void {

@@ -1,10 +1,3 @@
-<div [style.backgroundColor]="color">{{ value | yell:'???' | uppercase }}</div>
-
-<button appTest color="hotpink" (click)="onClick($event)" (mousemove)="onMouseMove($event)">Click me</button>
-
-{{ numericValue }}
-{{ numericValue | percent }}
-{{ numericValue | currency }}
-{{ numericValue | number:'0.5' }}
-
-<app-todo appTest color="cornflowerblue" [todo]="myTodo" (done)="onDone($event)"></app-todo>
+<ul>
+  <li *ngFor="let todo of todos">{{ todo.name }}</li>
+</ul>
