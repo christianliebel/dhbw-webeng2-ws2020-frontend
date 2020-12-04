@@ -1,3 +1,4 @@
+import { TodoService } from './todo.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,6 +11,10 @@ export class AppComponent {
   public color = 'cornflowerblue';
   public numericValue = 3.14159265;
   public myTodo = { name: 'Review durchführen', done: false, id: 3 };
+
+  constructor(todoService: TodoService) {
+    console.log(todoService.getAll());
+  }
 
   public onClick(event: MouseEvent): void {
     // event.clientX + "," + event.clientY
