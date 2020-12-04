@@ -7,6 +7,9 @@ import { YellPipe } from './yell.pipe';
 import { TodoComponent } from './todo/todo.component';
 import { TestDirective } from './test.directive';
 import { Test2Directive } from './test2.directive';
+import { AuthModule } from '@auth0/auth0-angular/lib/auth.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthHttpInterceptor } from '@auth0/auth0-angular/lib/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -18,9 +21,34 @@ import { Test2Directive } from './test2.directive';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    AuthModule.forRoot({
+      // The domain and clientId were configured in the previous chapter
+      domain: 'christianliebel.eu.auth0.com',
+      clientId: 'mDjWaVqUfRT0kfzZa7Ps4qE2trGPa0JW',
+
+      // Request this audience at user authentication time
+      audience: 'https://christianliebel.com/dhbw/2020/ws/todo',
+
+      // Specify configuration for the interceptor
+      httpInterceptor: {
+        allowedList: [
+          {
+            // Match any request that starts 'https://christianliebel.eu.auth0.com/api/v2/' (note the asterisk)
+            uri: 'http://localhost:3000/*',
+            tokenOptions: {
+              // The attached token should target this audience
+              audience: 'https://christianliebel.com/dhbw/2020/ws/todo',
+            }
+          }
+        ]
+      }
+    })
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
